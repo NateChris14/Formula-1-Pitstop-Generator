@@ -6,4 +6,5 @@ seaborn
 scikit-learn
 xgboost
 feature-engine
+dill
 #-e .
