@@ -98,7 +98,7 @@ class ModelTrainer:
                     'n_estimators': [50, 100],
                     'learning_rate': [0.01, 0.05, 0.1],
                     'algorithm': ['SAMME', 'SAMME.R'],
-                    'base_estimator': [DecisionTreeClassifier(max_depth=1), DecisionTreeClassifier(max_depth=3)]
+                    'estimator': [DecisionTreeClassifier(max_depth=1), DecisionTreeClassifier(max_depth=3)]
                 },
 
                 "Support Vector Classifier":{
@@ -134,7 +134,7 @@ class ModelTrainer:
             )
 
             predicted = best_model.predict(X_test)
-            precision = precision_score(y_test,predicted)
+            precision = precision_score(y_test,predicted,average='weighted')
 
             return precision
         

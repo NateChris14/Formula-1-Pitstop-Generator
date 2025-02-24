@@ -33,8 +33,8 @@ def evaluate_models(X_train,y_train,X_test,y_test,models,param):
             y_train_pred = best_model_current.predict(X_train)
             y_test_pred = best_model_current.predict(X_test)
 
-            train_model_score = precision_score(y_train,y_train_pred)
-            test_model_score = precision_score(y_test,y_test_pred)
+            train_model_score = precision_score(y_train,y_train_pred,average='weighted')
+            test_model_score = precision_score(y_test,y_test_pred,average='weighted')
 
             report[model_name] = test_model_score
 
