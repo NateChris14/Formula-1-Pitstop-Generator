@@ -19,7 +19,7 @@ from src.logger import logging
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_ob_file_path=os.path.join('artifacts','preprocessor.pkl')
+    preprocessor_ob_file_path=os.path.join(os.getcwd(),'artifact','preprocessor.pkl')
 
 class DataTransformation:
     def __init__(self):
