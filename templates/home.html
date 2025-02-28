@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Prediction</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Formula 1 Performance Prediction</h2>
+        
+        <form action="/predict" method="post" class="mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="grid_position" class="form-label">Grid Position</label>
+                    <input type="number" class="form-control" name="Grid Position" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="final_position" class="form-label">Final Position</label>
+                    <input type="number" class="form-control" name="Final Position" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="fastest_lap_time" class="form-label">Fastest Lap Time</label>
+                    <input type="text" class="form-control" name="Fastest Lap Time" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="points" class="form-label">Points</label>
+                    <input type="number" class="form-control" name="Points" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="number_of_laps" class="form-label">Number of Laps</label>
+                    <input type="number" class="form-control" name="Number of Laps" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="temperature" class="form-label">Temperature (°C)</label>
+                    <input type="number" step="0.1" class="form-control" name="Temperature (°C)" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="humidity" class="form-label">Humidity (%)</label>
+                    <input type="number" step="0.1" class="form-control" name="Humidity (%)" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="wind_speed" class="form-label">Wind Speed (m/s)</label>
+                    <input type="number" step="0.1" class="form-control" name="Wind Speed (m/s)" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="rain" class="form-label">Rain (mm)</label>
+                    <input type="number" step="0.1" class="form-control" name="Rain (mm)" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="status" class="form-label">Status</label>
+                    <input type="text" class="form-control" name="Status" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="weather" class="form-label">Weather</label>
+                    <input type="text" class="form-control" name="Weather" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="race_name" class="form-label">Race Name</label>
+                    <input type="text" class="form-control" name="Race Name" required>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="driver_id" class="form-label">Driver ID</label>
+                    <input type="text" class="form-control" name="Driver ID" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="constructor_name" class="form-label">Constructor Name</label>
+                    <input type="text" class="form-control" name="Constructor Name" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary mt-4">Predict</button>
+        </form>
+        
+        {% if results %}
+        <div class="alert alert-success mt-4">
+            <h4>Prediction Result:</h4>
+            <p>{{ results }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="alert alert-danger mt-4">
+            <h4>Error:</h4>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

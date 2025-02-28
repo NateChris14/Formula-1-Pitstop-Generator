@@ -7,4 +7,5 @@ scikit-learn
 xgboost
 feature-engine
 dill
+flask
 #-e .

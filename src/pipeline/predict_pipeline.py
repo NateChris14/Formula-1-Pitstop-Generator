@@ -39,19 +39,19 @@ class CustomData:
                 Driver_ID,
                 Constructor_Name):
 
-            self.Grid_Position = Grid_Position;
-            self.Final_Position = Final_Position;
-            self.Fastest_Lap_Time = Fastest_Lap_Time;
-            self.Points = Points;
-            self.Number_of_Laps = Number_of_Laps;
-            self.Temperature = Temperature;
-            self.Humidity = Humidity;
-            self.Wind_Speed = Wind_Speed;
-            self.Rain = Rain;
-            self.Status = Status;
-            self.Weather = Weather;
-            self.Race_Name = Race_Name;
-            self.Driver_ID = Driver_ID;
+            self.Grid_Position = Grid_Position
+            self.Final_Position = Final_Position
+            self.Fastest_Lap_Time = Fastest_Lap_Time
+            self.Points = Points
+            self.Number_of_Laps = Number_of_Laps
+            self.Temperature = Temperature
+            self.Humidity = Humidity
+            self.Wind_Speed = Wind_Speed
+            self.Rain = Rain
+            self.Status = Status
+            self.Weather = Weather
+            self.Race_Name = Race_Name
+            self.Driver_ID = Driver_ID
             self.Constructor_Name = Constructor_Name
 
     def get_data_as_frame(self):
