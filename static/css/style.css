@@ -1,0 +1,361 @@
+/* F1 Custom Font */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap");
+
+/* Variables */
+:root {
+  --f1-red: #e10600;
+  --f1-dark: #15151e;
+  --f1-gray: #38383f;
+  --f1-light-gray: #f8f9fa;
+  --f1-white: #ffffff;
+}
+
+/* Base Styles */
+body.f1-body {
+  font-family: "Titillium Web", sans-serif;
+  background-color: var(--f1-dark);
+  color: var(--f1-white);
+  line-height: 1.6;
+}
+
+/* Header Styles */
+.f1-header {
+  background-color: var(--f1-red);
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.f1-header h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.f1-stripe {
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    var(--f1-dark) 0%,
+    var(--f1-dark) 30%,
+    var(--f1-white) 30%,
+    var(--f1-white) 70%,
+    var(--f1-dark) 70%,
+    var(--f1-dark) 100%
+  );
+  margin-top: 1rem;
+}
+
+/* Card Styles */
+.f1-card {
+  background-color: var(--f1-gray);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+.f1-form-group {
+  margin-bottom: 1rem;
+}
+
+.f1-form-group label {
+  font-weight: 600;
+  color: var(--f1-white);
+  margin-bottom: 0.5rem;
+}
+
+.f1-input,
+.f1-select {
+  background-color: var(--f1-dark);
+  border: 2px solid var(--f1-gray);
+  color: var(--f1-white);
+  border-radius: 5px;
+  padding: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.f1-input:focus,
+.f1-select:focus {
+  border-color: var(--f1-red);
+  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.25);
+  background-color: var(--f1-dark);
+  color: var(--f1-white);
+}
+
+.f1-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 12px;
+  padding-right: 2.5rem;
+}
+
+.form-text {
+  color: #a0a0a6;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Button Styles */
+.f1-button {
+  background-color: var(--f1-red);
+  color: var(--f1-white);
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  width: 100%;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.f1-button:hover {
+  background-color: #b30500;
+  transform: translateY(-1px);
+}
+
+.f1-button:active {
+  transform: translateY(0);
+}
+
+/* Alert Styles */
+.f1-alert {
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.f1-alert h4 {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.f1-alert-success {
+  background-color: #1e4620;
+  color: #4caf50;
+  border: 1px solid #2e7d32;
+}
+
+.f1-alert-error {
+  background-color: #461e1e;
+  color: #f44336;
+  border: 1px solid #c62828;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .f1-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .f1-card {
+    padding: 1rem;
+  }
+
+  .f1-button {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Input Placeholder Color */
+.f1-input::placeholder,
+.f1-select::placeholder {
+  color: #6c757d;
+}
+
+/* Invalid Input Styling */
+.f1-input:invalid,
+.f1-select:invalid {
+  border-color: var(--f1-red);
+}
+
+/* Disabled State */
+.f1-input:disabled,
+.f1-select:disabled {
+  background-color: #2a2a2f;
+  cursor: not-allowed;
+}
+
+/* Focus Visible Outline */
+.f1-input:focus-visible,
+.f1-select:focus-visible {
+  outline: none;
+}
+
+/* Override Bootstrap Default Styles */
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--f1-dark);
+  color: var(--f1-white);
+  border-color: var(--f1-red);
+  box-shadow: 0 0 0 2px rgba(225, 6, 0, 0.25);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--f1-dark);
+  color: var(--f1-white);
+  border: 2px solid var(--f1-gray);
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23ffffff' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+}
+
+/* Hero Section Styles */
+.f1-hero {
+    padding: 2rem 0;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--f1-white);
+  }
+  
+  .hero-text {
+    font-size: 1.2rem;
+    color: var(--f1-light-gray);
+    margin-bottom: 2rem;
+  }
+  
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--f1-red);
+  }
+  
+  .stat-label {
+    color: var(--f1-light-gray);
+    font-size: 0.9rem;
+  }
+  
+  /* Feature Card Styles */
+  .feature-card {
+    height: 100%;
+  }
+  
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .feature-list li {
+    display: flex;
+    align-items: start;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .feature-icon {
+    font-size: 1.5rem;
+    background: var(--f1-dark);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .feature-content h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    color: var(--f1-white);
+  }
+  
+  .feature-content p {
+    font-size: 0.9rem;
+    color: var(--f1-light-gray);
+    margin: 0;
+  }
+  
+  /* Step Card Styles */
+  .step-card {
+    background: var(--f1-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .step-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(225, 6, 0, 0.1);
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    line-height: 1;
+  }
+  
+  .step-card h4 {
+    color: var(--f1-white);
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .step-card p {
+    color: var(--f1-light-gray);
+    margin: 0;
+    position: relative;
+  }
+  
+  /* Footer Styles */
+  .f1-footer {
+    background-color: var(--f1-dark);
+    padding: 2rem 0;
+    color: var(--f1-light-gray);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+  
+    .hero-stats {
+      gap: 1rem;
+    }
+  
+    .stat-number {
+      font-size: 2rem;
+    }
+  
+    .feature-list li {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* Button Adjustment for Home Page */
+  a.f1-button {
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  /* Override for inline button */
+  .d-inline-block.f1-button {
+    width: auto;
+    min-width: 200px;
+  }
+  
+  

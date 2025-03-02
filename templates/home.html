@@ -3,101 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Prediction</title>
+    <title>F1 Performance Predictor</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static\css\style.css">
 </head>
-<body>
-    <div class="container mt-5">
-        <h2 class="text-center">Formula 1 Performance Prediction</h2>
-        
-        <form action="/predict" method="post" class="mt-4">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="grid_position" class="form-label">Grid Position</label>
-                    <input type="number" class="form-control" name="Grid Position" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="final_position" class="form-label">Final Position</label>
-                    <input type="number" class="form-control" name="Final Position" required>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="fastest_lap_time" class="form-label">Fastest Lap Time</label>
-                    <input type="text" class="form-control" name="Fastest Lap Time" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="points" class="form-label">Points</label>
-                    <input type="number" class="form-control" name="Points" required>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="number_of_laps" class="form-label">Number of Laps</label>
-                    <input type="number" class="form-control" name="Number of Laps" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="temperature" class="form-label">Temperature (°C)</label>
-                    <input type="number" step="0.1" class="form-control" name="Temperature (°C)" required>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="humidity" class="form-label">Humidity (%)</label>
-                    <input type="number" step="0.1" class="form-control" name="Humidity (%)" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="wind_speed" class="form-label">Wind Speed (m/s)</label>
-                    <input type="number" step="0.1" class="form-control" name="Wind Speed (m/s)" required>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="rain" class="form-label">Rain (mm)</label>
-                    <input type="number" step="0.1" class="form-control" name="Rain (mm)" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="status" class="form-label">Status</label>
-                    <input type="text" class="form-control" name="Status" required>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="weather" class="form-label">Weather</label>
-                    <input type="text" class="form-control" name="Weather" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="race_name" class="form-label">Race Name</label>
-                    <input type="text" class="form-control" name="Race Name" required>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="driver_id" class="form-label">Driver ID</label>
-                    <input type="text" class="form-control" name="Driver ID" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="constructor_name" class="form-label">Constructor Name</label>
-                    <input type="text" class="form-control" name="Constructor Name" required>
-                </div>
-            </div>
-            
-            <button type="submit" class="btn btn-primary mt-4">Predict</button>
-        </form>
-        
-        {% if results %}
-        <div class="alert alert-success mt-4">
-            <h4>Prediction Result:</h4>
-            <p>{{ results }}</p>
+<body class="f1-body">
+    <div class="f1-header">
+        <div class="container">
+            <h1 class="text-center">F1 PERFORMANCE PREDICTOR</h1>
+            <div class="f1-stripe"></div>
         </div>
-        {% endif %}
-
-        {% if error %}
-        <div class="alert alert-danger mt-4">
-            <h4>Error:</h4>
-            <p>{{ error }}</p>
-        </div>
-        {% endif %}
     </div>
+    
+    <div class="container mt-4">
+        <div class="f1-card">
+            <form action="/predict" method="post" class="f1-form" id="f1-form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="grid_position" class="form-label">Grid Position</label>
+                            <input type="number" class="form-control f1-input" id="grid_position" name="Grid Position" min="1" max="20" required>
+                            <div class="form-text">Enter a position between 1 and 20</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="final_position" class="form-label">Final Position</label>
+                            <input type="number" class="form-control f1-input" id="final_position" name="Final Position" min="1" max="20" required>
+                            <div class="form-text">Enter a position between 1 and 20</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="fastest_lap_time" class="form-label">Fastest Lap Time (seconds)</label>
+                            <input type="number" class="form-control f1-input" id="fastest_lap_time" name="Fastest Lap Time" 
+                                   min="60" max="125" step="0.001" required>
+                            <div class="form-text">Enter lap time between 60.000 and 125.000 seconds</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="points" class="form-label">Points</label>
+                            <input type="number" class="form-control f1-input" id="points" name="Points" min="0" max="26" step="1" required>
+                            <div class="form-text">Enter finishing points between 0 and 26 (26 includes fastest lap bonus)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="number_of_laps" class="form-label">Number of Laps</label>
+                            <input type="number" class="form-control f1-input" id="number_of_laps" name="Number of Laps" min="40" max="90" required>
+                            <div class="form-text">Enter number of laps between 40 and 90</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="temperature" class="form-label">Temperature (°C)</label>
+                            <input type="number" step="0.1" class="form-control f1-input" id="temperature" name="Temperature (°C)" min="0" max="40" required>
+                            <div class="form-text">Enter temperature between 0°C and 40°C</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="humidity" class="form-label">Humidity (%)</label>
+                            <input type="number" step="0.1" class="form-control f1-input" id="humidity" name="Humidity (%)" min="0" max="100" required>
+                            <div class="form-text">Enter humidity between 0% and 100%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="wind_speed" class="form-label">Wind Speed (m/s)</label>
+                            <input type="number" step="0.1" class="form-control f1-input" id="wind_speed" name="Wind Speed (m/s)" min="0" max="30" required>
+                            <div class="form-text">Enter wind speed between 0 and 30 m/s</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="rain" class="form-label">Rain (mm)</label>
+                            <input type="number" step="0.1" class="form-control f1-input" id="rain" name="Rain (mm)" min="0" max="10" required>
+                            <div class="form-text">Enter rainfall between 0 and 10mm</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-select f1-select" id="status" name="Status" required>
+                                <option value="" selected disabled>Select status</option>
+                                <option value="Finished">Finished (default)</option>
+                                <option value="DNF">DNF</option>
+                                <option value="+1 Lap">+1 Lap</option>
+                                <option value="+2 Laps">+2 Laps</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="weather" class="form-label">Weather</label>
+                            <select class="form-select f1-select" id="weather" name="Weather" required>
+                                <option value="" selected disabled>Select weather</option>
+                                <option value="Rain">Rain</option>
+                                <option value="No Rain">No Rain</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="race_name" class="form-label">Race Name</label>
+                            <select class="form-select f1-select" id="race_name" name="Race Name" required>
+                                <option value="" selected disabled>Select race</option>
+                                <option value="Au">Australian Grand Prix</option>
+                                <option value="Az">Azerbaijan Grand Prix</option>
+                                <option value="Br">Brazilian Grand Prix</option>
+                                <option value="Hu">Hungarian Grand Prix</option>
+                                <option value="It">Italian Grand Prix</option>
+                                <option value="Du">Dutch Grand Prix</option>
+                                <option value="Sã">São Paulo Grand Prix</option>
+                                <option value="Be">Belgian Grand Prix</option>
+                                <option value="Po">Portuguese Grand Prix</option>
+                                <option value="Mi">Miami Grand Prix</option>
+                                <option value="Ru">Russian Grand Prix</option>
+                                <option value="Em">Emilia Romagna Grand Prix</option>
+                                <option value="La">Las Vegas Grand Prix</option>
+                                <option value="Ab">Abu Dhabi Grand Prix</option>
+                                <option value="Sa">Saudi Arabian Grand Prix</option>
+                                <option value="Ja">Japanese Grand Prix</option>
+                                <option value="Fr">French Grand Prix</option>
+                                <option value="Ca">Canadian Grand Prix</option>
+                                <option value="70">70th Anniversary Grand Prix</option>
+                                <option value="Mo">Monaco Grand Prix</option>
+                                <option value="Sp">Spanish Grand Prix</option>
+                                <option value="Ge">German Grand Prix</option>
+                                <option value="Ba">Bahrain Grand Prix</option>
+                                <option value="Me">Mexico City Grand Prix</option>
+                                <option value="Tu">Turkish Grand Prix</option>
+                                <option value="Ch">Chinese Grand Prix</option>
+                                <option value="Si">Singapore Grand Prix</option>
+                                <option value="Qa">Qatar Grand Prix</option>
+                                <option value="Un">United States Grand Prix</option>
+                                <option value="St">Styrian Grand Prix</option>
+                                <option value="Ei">Eifel Grand Prix</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="driver_id" class="form-label">Driver ID</label>
+                            <select class="form-select f1-select" id="driver_id" name="Driver ID" required>
+                                <option value="" selected disabled>Select driver</option>
+                                <option value="le">Leclerc</option>
+                                <option value="al">Albon</option>
+                                <option value="ra">Raikkonen</option>
+                                <option value="sa">Sainz</option>
+                                <option value="ts">Tsunoda</option>
+                                <option value="st">Stroll</option>
+                                <option value="kv">Kvyat</option>
+                                <option value="no">Norris</option>
+                                <option value="ri">Ricciardo</option>
+                                <option value="ve">Verstappen</option>
+                                <option value="ma">Magnussen</option>
+                                <option value="zh">Zhou</option>
+                                <option value="ru">Russell</option>
+                                <option value="ha">Hamilton</option>
+                                <option value="mi">Mick Schumacher</option>
+                                <option value="bo">Bottas</option>
+                                <option value="ga">Gasly</option>
+                                <option value="la">Latifi</option>
+                                <option value="oc">Ocon</option>
+                                <option value="pi">Piastri</option>
+                                <option value="pe">Perez</option>
+                                <option value="co">Cordeel</option>
+                                <option value="gr">Grosjean</option>
+                                <option value="gi">Giovinazzi</option>
+                                <option value="ke">Kecmanović</option>
+                                <option value="hu">Hulkenberg</option>
+                                <option value="ku">Kubica</option>
+                                <option value="de">de Vries</option>
+                                <option value="be">Bearman</option>
+                                <option value="ai">Aitken</option>
+                            </select>
+                            <div class="form-text">Driver name</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="f1-form-group">
+                            <label for="constructor_name" class="form-label">Constructor Name</label>
+                            <select class="form-select f1-select" id="constructor_name" name="Constructor Name" required>
+                                <option value="" selected disabled>Select constructor</option>
+                                <option value="Fe">Ferrari</option>
+                                <option value="To">Toro Rosso</option>
+                                <option value="RB">Red Bull</option>
+                                <option value="As">Aston Martin</option>
+                                <option value="Mc">McLaren</option>
+                                <option value="Al">Alpine</option>
+                                <option value="Wi">Williams</option>
+                                <option value="Me">Mercedes</option>
+                                <option value="Sa">Sauber</option>
+                                <option value="Re">Renault</option>
+                                <option value="Ha">Haas</option>
+                                <option value="Ra">Racing Point</option>
+                            </select>
+                            <div class="form-text">Constructor name</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="f1-button mt-4">PREDICT PERFORMANCE</button>
+            </form>
+
+            {% if results %}
+            <div class="f1-alert f1-alert-success mt-4">
+                <h4>Prediction Result:</h4>
+                <p>{{ results }}</p>
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="f1-alert f1-alert-error mt-4">
+                <h4>Error:</h4>
+                <p>{{ error }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
