@@ -8,4 +8,5 @@ xgboost
 feature-engine
 dill
 flask
+pytest
 #-e .
