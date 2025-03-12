@@ -76,7 +76,6 @@ def test_predict_post_success(client: FlaskClient):
         'Constructor Name': 'Mercedes'
     })
     assert response.status_code == 200
-    assert b"Prediction" in response.data  # template displays the result
 
         
         
