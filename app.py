@@ -54,7 +54,7 @@ def predict_datapoint():
             predict_pipeline = PredictPipeline()
             results = predict_pipeline.predict(pred_df)
             if results[0] == 0.0:
-                results[0] = 1.0
+                results[0] = 1.0 #Adjusting for the F1 rule of atleast one stop
             return render_template('home.html', results=results[0])
 
         except ValueError:
