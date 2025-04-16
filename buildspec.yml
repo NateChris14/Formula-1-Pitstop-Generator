@@ -5,28 +5,26 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 20
+      python: 3.12
     commands:
-      - echo Installing dependencies...
+      - pip install --upgrade pip
+      - pip install -r requirements.txt
 
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - aws --version
-      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 136904910983.dkr.ecr.eu-north-1.amazonaws.com
+      - echo "Running unit and integration tests..."
+      - pytest tests/  # This should include the unit & integration test files
 
   build:
     commands:
-      - echo Building the Docker image...
+      - echo "Logging in to Amazon ECR..."
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 136904910983.dkr.ecr.eu-north-1.amazonaws.com
+      - echo "Building Docker image..."
       - docker build -t f1-prediction .
       - docker tag f1-prediction:latest 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
 
   post_build:
     commands:
-      - echo Running tests...
-      - docker run --rm f1-prediction python3 -m unittest discover -s tests
-      - echo Pushing the Docker image to ECR...
+      - echo "Pushing Docker image to ECR..."
       - docker push 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
-artifacts:
-  files:
-    - '**/*'
+      - echo "Build and push completed on `date`"
