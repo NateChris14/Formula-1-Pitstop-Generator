@@ -1,23 +1,32 @@
-#This file is to build the docker image and push it AWS ECR
+# This file is to build,test and push the docker image to ECR
+
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      docker: 20
+    commands:
+      - echo Installing dependencies...
+
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - $(aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 136904910983.dkr.ecr.eu-north-1.amazonaws.com)
-      - REPOSITORY_URI=136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction
-      - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 136904910983.dkr.ecr.eu-north-1.amazonaws.com
+
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+      - docker build -t f1-prediction .
+      - docker tag f1-prediction:latest 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
+
   post_build:
     commands:
-      - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions...
-      - printf '[{"name":"f1-container","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo Running tests...
+      - docker run --rm f1-prediction python3 -m unittest discover -s tests
+      - echo Pushing the Docker image to ECR...
+      - docker push 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
 artifacts:
-  files: imagedefinitions.json
+  files:
+    - '**/*'
