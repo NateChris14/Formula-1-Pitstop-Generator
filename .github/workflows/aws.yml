@@ -36,7 +36,7 @@ env:
   ECS_SERVICE: f1-service                         # <-- your ECS service name
   ECS_CLUSTER: f1-cluster-new                     # <-- your ECS cluster name
   ECS_TASK_DEFINITION: .aws/f1-appy.json           # <-- your task def JSON file
-  CONTAINER_NAME: f1-container                    # <-- must match container name in task def
+  CONTAINER_NAME: f1-prediction                    # <-- must match container name in task def
 
 permissions:
   contents: read
