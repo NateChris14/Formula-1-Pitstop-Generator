@@ -1,40 +1,50 @@
 # This file is to build,test and push the docker image to ECR, and then deploy it to ECS Fargate
 
-version: 0.2
+name: Build and Deploy to ECS
 
-phases:
-  install:
-    runtime-versions:
-      python: 3.12
-    commands:
-      - pip install --upgrade pip
-      - pip install -r requirements.txt
+on:
+  push:
+    branches: [ main ]  # Or your deployment branch
 
-  pre_build:
-    commands:
-      - echo "Running unit and integration tests..."
-      - pytest tests/  # Your unit & integration tests
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-  build:
-    commands:
-      - echo "Logging in to Amazon ECR..."
-      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 136904910983.dkr.ecr.eu-north-1.amazonaws.com
-      - echo "Building Docker image..."
-      - docker build -t f1-prediction .
-      - docker tag f1-prediction:latest 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  post_build:
-    commands:
-      - echo "Pushing Docker image to ECR..."
-      - docker push 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
-      - echo "Updating ECS service..."
-      - |
-        aws ecs update-service \
-          --cluster f1-cluster-new \
-          --service f1-service \
-          --force-new-deployment \
-          --region eu-north-1
-      - echo "✅ Deployment triggered at `date`"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 
-artifacts:
-  files: '**/*'
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest tests/
+
+      - name: Log in to Amazon ECR
+        run: |
+          aws ecr get-login-password --region eu-north-1 | \
+          docker login --username AWS --password-stdin 136904910983.dkr.ecr.eu-north-1.amazonaws.com
+
+      - name: Build and tag Docker image
+        run: |
+          docker build -t f1-prediction .
+          docker tag f1-prediction:latest 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
+
+      - name: Push Docker image
+        run: |
+          docker push 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
+
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service \
+            --cluster f1-cluster-new \
+            --service f1-service \
+            --force-new-deployment \
+            --region eu-north-1
