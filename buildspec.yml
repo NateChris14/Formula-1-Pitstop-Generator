@@ -30,7 +30,7 @@ phases:
       - echo "Updating ECS service..."
       - |
         aws ecs update-service \
-          --cluster f1-cluster \
+          --cluster f1-cluster-new \
           --service f1-service \
           --force-new-deployment \
           --region eu-north-1
