@@ -1,4 +1,4 @@
-# This file is to build,test and push the docker image to ECR
+# This file is to build,test and push the docker image to ECR, and then deploy it to ECS Fargate
 
 version: 0.2
 
@@ -13,7 +13,7 @@ phases:
   pre_build:
     commands:
       - echo "Running unit and integration tests..."
-      - pytest tests/  # This should include the unit & integration test files
+      - pytest tests/  # Your unit & integration tests
 
   build:
     commands:
@@ -27,4 +27,14 @@ phases:
     commands:
       - echo "Pushing Docker image to ECR..."
       - docker push 136904910983.dkr.ecr.eu-north-1.amazonaws.com/f1-prediction:latest
-      - echo "Build and push completed on `date`"
+      - echo "Updating ECS service..."
+      - |
+        aws ecs update-service \
+          --cluster f1-cluster \
+          --service f1-service \
+          --force-new-deployment \
+          --region eu-north-1
+      - echo "✅ Deployment triggered at `date`"
+
+artifacts:
+  files: '**/*'
