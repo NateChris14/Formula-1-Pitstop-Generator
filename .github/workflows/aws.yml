@@ -37,6 +37,7 @@ env:
   ECS_CLUSTER: f1-cluster-new                     # <-- your ECS cluster name
   ECS_TASK_DEFINITION: .aws/f1-appy.json           # <-- your task def JSON file
   CONTAINER_NAME: f1-prediction                    # <-- must match container name in task def
+  ALB_TARGET_GROUP_ARN: arn:aws:elasticloadbalancing:eu-north-1:136904910983:loadbalancer/app/f1-ALB-new/7aa7c56f9d880cb4  # <-- your ALB target group ARN
 
 permissions:
   contents: read
@@ -87,4 +88,11 @@ jobs:
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
+
+    - name: Update ECS service to register with ALB target group
+      run: |
+        aws ecs update-service \
+          --cluster ${{ env.ECS_CLUSTER }} \
+          --service ${{ env.ECS_SERVICE }} \
+          --load-balancers "targetGroupArn=${{ env.ALB_TARGET_GROUP_ARN }},containerName=${{ env.CONTAINER_NAME }},containerPort=80"
 
