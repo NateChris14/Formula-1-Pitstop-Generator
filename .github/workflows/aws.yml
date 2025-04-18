@@ -33,7 +33,7 @@ on:
 env:
   AWS_REGION: eu-north-1
   ECR_REPOSITORY: f1-prediction                   # <-- your actual ECR repo name
-  ECS_SERVICE: f1-new-service                         # <-- your ECS service name
+  ECS_SERVICE: f1-new-service                     # <-- your ECS service name
   ECS_CLUSTER: f1-cluster-new                     # <-- your ECS cluster name
   ECS_TASK_DEFINITION: .aws/f1-appy.json           # <-- your task def JSON file
   CONTAINER_NAME: f1-prediction                    # <-- must match container name in task def
