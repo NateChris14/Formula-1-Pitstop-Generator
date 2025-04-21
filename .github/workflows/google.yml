@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-  SERVICE_NAME: your-flask-service
+  SERVICE_NAME: gcp-deploy
   REGION: us-central1
 
 jobs:
