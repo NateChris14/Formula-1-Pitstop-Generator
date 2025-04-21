@@ -1,0 +1,22 @@
+{
+    "family": "f1-task",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::650788309152:role/ecsTaskExecutionRole",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "256",
+    "memory": "512",
+    "containerDefinitions": [
+      {
+        "name": "f1-container",
+        "image": "650788309152.dkr.ecr.us-east-1.amazonaws.com/f1-prediction", 
+        "portMappings": [
+          {
+            "containerPort": 5000,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true
+      }
+    ]
+  }
+  
