@@ -20,4 +20,5 @@ ENV PORT=80
 EXPOSE 80
 
 #Running the Flask App
-CMD ["flask","run","--port=80","--host=0.0.0.0"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:80", "app:app"]
+

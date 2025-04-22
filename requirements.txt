@@ -9,4 +9,5 @@ feature-engine
 dill
 flask
 pytest
+gunicorn
 #-e .
