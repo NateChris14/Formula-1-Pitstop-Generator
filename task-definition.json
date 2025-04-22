@@ -1,0 +1,25 @@
+{
+    "family": "f1-task",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::020759835805:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "name": "f1-container",
+        "image": "020759835805.dkr.ecr.eu-north-1.amazonaws.com/your-repo:latest",  
+        "portMappings": [
+          {
+            "containerPort": 80,
+            "hostPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true,
+        "environment": [
+          {"name": "FLASK_ENV", "value": "production"}
+        ]
+      }
+    ],
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "512",
+    "memory": "1024"
+  }
