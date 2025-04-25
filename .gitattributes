@@ -1,7 +1,18 @@
+# Force GitHub to detect these files for language stats
+*.py linguist-detectable=true
 *.html linguist-detectable=true
 *.css linguist-detectable=true
-*.js linguist-detectable=true
-*.py linguist-detectable=true
-*.ipynb linguist-language=Python
-/static/** linguist-detectable=true
-/templates/** linguist-detectable=true
+Dockerfile linguist-detectable=true
+
+# Making sure templates and static folders are considered
+templates/** linguist-detectable=true
+static/** linguist-detectable=true
+src/** linguist-detectable=true
+tests/** linguist-detectable=true
+
+# Ignoring some build/cache folders
+artifact/** linguist-vendored=true
+Data/** linguist-vendored=true
+logs/** linguist-vendored=true
+.venv/** linguist-vendored=true
+__pycache__/** linguist-vendored=true
