@@ -1,0 +1,7 @@
+*.html linguist-detectable=true
+*.css linguist-detectable=true
+*.js linguist-detectable=true
+*.py linguist-detectable=true
+*.ipynb linguist-language=Python
+/static/** linguist-detectable=true
+/templates/** linguist-detectable=true
