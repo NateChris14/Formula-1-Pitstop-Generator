@@ -1,18 +1,16 @@
-# Force GitHub to detect these files for language stats
+# Tell GitHub to prioritize actual code
 *.py linguist-detectable=true
 *.html linguist-detectable=true
 *.css linguist-detectable=true
-Dockerfile linguist-detectable=true
 
-# Making sure templates and static folders are considered
-templates/** linguist-detectable=true
-static/** linguist-detectable=true
-src/** linguist-detectable=true
-tests/** linguist-detectable=true
+# Tell GitHub to ignore these when calculating languages
+Dockerfile linguist-generated=true
+*.yml linguist-generated=true
+*.yaml linguist-generated=true
+*.json linguist-generated=true
+*.md linguist-generated=true
+*.lock linguist-generated=true
 
-# Ignoring some build/cache folders
-artifact/** linguist-vendored=true
-Data/** linguist-vendored=true
-logs/** linguist-vendored=true
-.venv/** linguist-vendored=true
-__pycache__/** linguist-vendored=true
+# Optional: ignore tests or cache files too
+tests/* linguist-generated=true
+__pycache__/* linguist-generated=true
