@@ -89,7 +89,7 @@ This project has been containerized using Docker and deployed to AWS ECS (Fargat
 
 Below is the architecture used to deploy the F1 Pitstop Prediction app:
 
-![Deployment Architecture](C:\Users\NATHAN\F1FINAL\F1 deploy architecture.png)
+![Deployment Architecture](https://github.com/NateChris14/Formula-1-Pitstop-Generator/blob/main/F1%20deploy%20architecture.png)
 
 **Key components:**
 - **AWS ECS (Fargate)**: For running containerized Flask app.
