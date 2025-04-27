@@ -5,6 +5,13 @@
 
 This project leverages Machine Learning to predict pitstop strategies for Formula 1 races, using historical data. The objective is to build a web application for this very purpose which can be freely used pre-race to determine the best possible race strategies.
 
+## 🎬 Project Demo
+
+Watch a quick demo of the F1 Pitstop Prediction app:
+
+![Project Demo](https://github.com/NateChris14/Formula-1-Pitstop-Generator/blob/main/f1-predictor.mp4)
+
+
 ## Key Features
 
 * 🏁 Pitstop Strategy Prediction: Build a predictive model to forecast the number of pit stops during a race based on various factors like weather, laps, and race conditions.
@@ -81,7 +88,7 @@ python app.py
 
 5. Deploying the app using Docker and AWS ECS: Follow the instructions below for Dockerizing the app and deploying it to AWS ECS.
 
-## Deployment
+## Deployment 
 
 This project has been containerized using Docker and deployed to AWS ECS (Fargate). Below are the steps for deploying the application:
 
