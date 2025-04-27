@@ -101,8 +101,8 @@ docker build -t f1-pitstop-prediction .
 
 3. Set up AWS ECS:
 
-Create an ECS Cluster and Task Definition.
+* Create an ECS Cluster and Task Definition.
 
-Deploy your app using ECS Fargate.
+* Deploy your app using ECS Fargate.
 
 4. Set up CI/CD with GitHub Actions: GitHub Actions will automatically deploy updates to AWS ECS whenever changes are pushed to the main branch.
