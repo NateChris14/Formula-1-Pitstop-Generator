@@ -133,3 +133,15 @@ docker build -t f1-pitstop-prediction .
 * Deploy your app using ECS Fargate.
 
 4. Set up CI/CD with GitHub Actions: GitHub Actions will automatically deploy updates to AWS ECS whenever changes are pushed to the main branch.
+
+## 🙏 Acknowledgments
+
+- **Ergast API**: For providing F1 race data.
+- **scikit-learn**: For its machine learning algorithms used in the prediction model.
+- **Flask**: For providing a simple and efficient web framework.
+- **Docker**: For containerizing the application for deployment.
+- **AWS**: For cloud services used to deploy the app.
+- **GitHub Actions**: For automating the CI/CD pipeline.
+
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
