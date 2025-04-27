@@ -85,6 +85,20 @@ python app.py
 
 This project has been containerized using Docker and deployed to AWS ECS (Fargate). Below are the steps for deploying the application:
 
+## 📊 Deployment Architecture
+
+Below is the architecture used to deploy the F1 Pitstop Prediction app:
+
+![Deployment Architecture](C:\Users\NATHAN\F1FINAL\F1 deploy architecture.png)
+
+**Key components:**
+- **AWS ECS (Fargate)**: For running containerized Flask app.
+- **AWS ECR**: For storing the Docker image.
+- **GitHub Actions**: For CI/CD pipeline to automatically deploy the app.
+- **Flask App**: Exposes the prediction model to users via a web interface.
+- **Docker**: Containerizes the application for deployment consistency across environments.
+
+
 1. Dockerize the app: Ensure the Dockerfile is correctly set up in your project folder. Then build the Docker image:
 
 ```bash
