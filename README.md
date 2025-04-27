@@ -12,7 +12,8 @@ Watch a quick demo of the F1 Pitstop Prediction app in action:
 ![Home Page](https://github.com/NateChris14/Formula-1-Pitstop-Generator/blob/main/home-page.png)
 ![Main Page](https://github.com/NateChris14/Formula-1-Pitstop-Generator/blob/main/main-page.png)
 
-[![Project Demo](https://youtu.be/B7FerenWQZU)](https://youtu.be/B7FerenWQZU)
+
+Alternatively, you can view the demo here: [Project Demo Video](https://youtu.be/B7FerenWQZU)
 
 
 ## Key Features
