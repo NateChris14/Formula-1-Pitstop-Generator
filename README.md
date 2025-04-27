@@ -7,9 +7,9 @@ This project leverages Machine Learning to predict pitstop strategies for Formul
 
 ## 🎬 Project Demo
 
-Watch a quick demo of the F1 Pitstop Prediction app:
+Watch a quick demo of the F1 Pitstop Prediction app in action:
 
-![Project Demo](https://github.com/NateChris14/Formula-1-Pitstop-Generator/blob/main/f1-predictor.mp4)
+[![Project Demo](https://youtu.be/B7FerenWQZU)](https://youtu.be/B7FerenWQZU)
 
 
 ## Key Features
