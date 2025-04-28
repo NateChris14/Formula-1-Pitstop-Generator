@@ -17,6 +17,10 @@ Watch a quick demo of the F1 Pitstop Prediction app in action:
 
 Alternatively, you can view the demo here: [Project Demo Video](https://youtu.be/B7FerenWQZU)
 
+## 📄 Project Presentation
+[View the Business Presentation (PPTX)](https://github.com/NateChris14/Formula-1-Pitstop-Generator/blob/main/Business%20impact%20pitch/F1-Pitstop-Prediction-Revolutionizing-Race-Strategy-with-Machine-Learning.pptx)
+
+
 
 ## Key Features
 
